@@ -1,0 +1,50 @@
+﻿@model List<ClubTask.Models.CoatchModel>
+<div>
+    <a href="/home/AddNew" class="btn btn-success">Add New Coach</a>
+</div>
+
+<div class="container">
+    <table class="table-responsive">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Dep</th>
+            <th>Phone</th>
+        </tr>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.CoachName</td>
+                    <td>@item.Age</td>
+                    <td>@item.TrainingName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td><a href="/Home/SelectCoach?_id=@item.ID" class="btn btn-info">Edit</a></td>
+                    <td><a class="btn btn-danger" onclick="DeleteBtn(@item.ID)" id="DeleteBtn">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="hidden" id="hiddenID" />
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        
+        var DeleteBtn= function () {
+            var id = $("hiddenID").val();
+            $.ajax({
+                type: "POST",
+                url: "/home/DeleteCoach",
+                data: {ID:id},
+                success: function () {
+                    alert("New Coach Deleted Sucessfully");
+                }
+            })
+        }
+
+    })
+</script>

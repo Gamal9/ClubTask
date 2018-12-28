@@ -1,0 +1,31 @@
+﻿@model ClubTask.Models.CoatchModel
+
+<div class="container">
+
+    <form id="PostForm">
+        @Html.TextBoxFor(coa => coa.CoachName, new { @class = "form-control", @placeholder = "Coatch Name" })
+        @Html.TextBoxFor(coa => coa.Age, new { @class = "form-control", @placeholder = "Coatch Age" })
+        @Html.TextBoxFor(coa => coa.PhoneNumber, new { @class = "form-control", @placeholder = "Coatch hone Number" })
+        @Html.DropDownListFor(coa => coa.TrainingID, ViewBag.DepartmentList as SelectList, "---Select Training Type !----", new { @class = "form-control" })
+        <input type="submit" value="Add" class="btn btn-block btn-primary" id="AddBtn" />
+    </form>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#AddBtn").click(function () {
+            var data = $("#PostForm").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/home/AddNew",
+                data: data,
+                success: function () {
+                    alert("New Coach Added Sucessfully");
+                }
+            })
+        })
+        
+    })
+</script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>

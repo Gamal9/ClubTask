@@ -1,0 +1,16 @@
+﻿@model ClubTask.Models.CoatchModel
+
+<div class="container">
+    
+
+    @if (Model != null)
+    {
+        <ul class="list-group">
+            <li class="list-group-item">Coach ID: <b>@Model.ID</b></li>
+            <li class="list-group-item">Coach Name: <b>@Model.CoachName</b></li>
+            <li class="list-group-item">Coach PhoneNumber: <b>@Model.PhoneNumber</b></li>
+            <li class="list-group-item">Coach Age:<b>@Model.Age</b></li>
+            <li class="list-group-item">@Model.TrainingID</li>
+        </ul>
+    }
+</div>
